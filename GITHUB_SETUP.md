@@ -9,12 +9,12 @@ pro-teleprompter
 
 ### Description (Short)
 ```
-Professional web-based teleprompter with variable speed, custom colors, PDF import, and mirror mode. Perfect for video creators and public speakers.
+Professional web-based teleprompter with variable speed, custom RGB colors, PDF/TXT import, and mirror mode. Works offline after initial load. Perfect for video creators and public speakers.
 ```
 
 ### Description (Long - for README)
 ```
-A feature-rich, professional-grade teleprompter application built with vanilla HTML, CSS, and JavaScript. Designed for content creators, public speakers, and video producers who need a reliable, customizable teleprompter solution that works entirely in the browser.
+A feature-rich, professional-grade teleprompter application built with vanilla HTML, CSS, and JavaScript. Works offline after initial setup. Designed for content creators, public speakers, and video producers who need a reliable, customizable teleprompter solution that runs entirely in the browser with no server required.
 ```
 
 ### Topics/Tags

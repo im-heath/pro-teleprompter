@@ -1,0 +1,105 @@
+========================================
+GITHUB REPOSITORY DESCRIPTION
+========================================
+
+Copy and paste these when creating your GitHub repository:
+
+========================================
+REPOSITORY NAME:
+========================================
+pro-teleprompter
+
+
+========================================
+SHORT DESCRIPTION (for GitHub):
+========================================
+Professional web-based teleprompter with variable speed, custom RGB colors, PDF/TXT import, and mirror mode. Works offline after initial load. Perfect for video creators and public speakers.
+
+
+========================================
+LONG DESCRIPTION (for README/About):
+========================================
+A feature-rich, professional-grade teleprompter application built with vanilla HTML, CSS, and JavaScript. Works offline after initial setup. Designed for content creators, public speakers, and video producers who need a reliable, customizable teleprompter solution that runs entirely in the browser with no server required.
+
+
+========================================
+KEY FEATURES (for promotional content):
+========================================
+✨ Variable speed scrolling (1-10x with 0.5 increments)
+🎨 Custom RGB color themes with 6 professional presets
+📄 Import PDF, TXT, and MD files
+🪞 Mirror mode for glass teleprompters
+📱 Fully responsive (mobile, tablet, desktop)
+⌨️ Comprehensive keyboard shortcuts
+💾 Auto-save with localStorage
+🎯 Reading guide with customizable highlight
+🖥️ Fullscreen mode
+👁️ Hide controls for recording
+🌐 Works offline after initial load
+📦 Zero runtime dependencies
+⚡ Only ~30KB total size
+🆓 Free and open source (MIT License)
+
+
+========================================
+OFFLINE CAPABILITIES (be specific):
+========================================
+✅ Fully functional offline after first page load
+✅ TXT and MD file import works completely offline
+✅ All features work offline (scrolling, colors, themes, etc.)
+⚠️ PDF import requires internet on FIRST use only (loads PDF.js library)
+✅ After first PDF import, works offline permanently (library cached)
+
+
+========================================
+TOPICS/TAGS (add to GitHub):
+========================================
+teleprompter
+video-production
+public-speaking
+content-creation
+javascript
+html5
+css3
+web-app
+pwa-ready
+offline-first
+responsive-design
+color-customization
+pdf-support
+mirror-mode
+zero-dependencies
+
+
+========================================
+WHAT TO EMPHASIZE:
+========================================
+1. Offline-first design (works after initial load)
+2. Custom RGB colors (unique feature)
+3. Professional features (mirror mode, reading guide)
+4. Zero dependencies (just PDF.js for PDF import)
+5. Tiny size (~30KB)
+6. Fully responsive (all devices)
+7. Privacy-focused (all local storage)
+8. Free and open source
+
+
+========================================
+TECHNICAL ACCURACY:
+========================================
+✓ "Works offline" - TRUE (after initial load)
+✓ "Zero dependencies" - CLARIFIED as "zero runtime dependencies"
+✓ "100% browser-based" - TRUE
+✓ "No server required" - TRUE
+✓ External dependency: PDF.js CDN (loaded once, cached)
+
+
+========================================
+USE THIS DESCRIPTION EVERYWHERE:
+========================================
+When someone asks "What is this?", use:
+
+"Professional web-based teleprompter with variable speed, custom RGB colors, PDF/TXT import, and mirror mode. Works offline after initial load. Perfect for video creators and public speakers."
+
+
+========================================

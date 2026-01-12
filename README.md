@@ -1,6 +1,6 @@
 # Professional Teleprompter
 
-A feature-rich, web-based teleprompter application designed for content creators, public speakers, and video producers. Perfect for recording videos, live presentations, and public speaking events.
+A feature-rich, web-based teleprompter application designed for content creators, public speakers, and video producers. Works offline after initial load. Perfect for recording videos, live presentations, and public speaking events.
 
 ## Features
 
@@ -19,9 +19,10 @@ A feature-rich, web-based teleprompter application designed for content creators
 - **Persistent State** - Automatically saves your script and settings
 
 ### File Management
-- **Import Scripts** - Load .txt or .md files
+- **Import Scripts** - Load .txt, .md, or .pdf files (PDF requires internet on first use)
 - **Export Scripts** - Save your scripts for backup or sharing
 - **Auto-Save** - Scripts are automatically saved to browser storage
+- **Offline Capable** - Works completely offline after initial page load
 
 ### Control Methods
 - **Mouse Control** - Click to play/pause
@@ -114,7 +115,8 @@ All data is stored locally in your browser. No scripts or settings are sent to a
 - Responsive design works on desktop, tablet, and mobile
 - Uses localStorage for persistent state
 - RequestAnimationFrame for smooth 60fps scrolling
-- No external dependencies or internet connection required
+- Works offline after initial load (loads PDF.js library on first use)
+- Only external dependency: PDF.js (loaded once from CDN for PDF import)
 
 ## Troubleshooting
 
