@@ -1,0 +1,241 @@
+========================================
+PRO TELEPROMPTER - FILE GUIDE
+========================================
+
+YOUR TELEPROMPTER PACKAGE CONTAINS:
+------------------------------------
+
+CORE APPLICATION (Required)
+---------------------------
+✓ index.html          - Main application (4.9 KB)
+✓ styles.css          - All styling (7.8 KB)
+✓ script.js           - Application logic (15.8 KB)
+
+Total core size: ~29 KB (tiny!)
+
+
+USER DOCUMENTATION
+------------------
+✓ START_HERE.html     - Friendly welcome page (6.5 KB)
+✓ USERGUIDE.md        - End-user instructions (6.5 KB)
+✓ README.md           - Technical documentation (4.9 KB)
+
+
+DISTRIBUTION TOOLS
+------------------
+✓ package.bat         - Windows packaging script
+✓ package.sh          - Mac/Linux packaging script
+✓ DISTRIBUTION.md     - How to share & distribute (6.0 KB)
+✓ SHARING.txt         - Quick sharing guide (2.4 KB)
+✓ FILE_GUIDE.txt      - This file
+
+
+========================================
+FILE PURPOSES
+========================================
+
+FOR END USERS (Include when sharing):
+--------------------------------------
+index.html        → The teleprompter app
+styles.css        → Styling (auto-loaded)
+script.js         → Functionality (auto-loaded)
+START_HERE.html   → Welcome page (optional but nice)
+USERGUIDE.md      → How to use it
+
+
+FOR DEVELOPERS (Keep for yourself):
+------------------------------------
+README.md         → Technical details
+DISTRIBUTION.md   → Distribution guide
+package.bat/sh    → Packaging scripts
+SHARING.txt       → Quick reference
+FILE_GUIDE.txt    → This guide
+
+
+========================================
+PACKAGING RECOMMENDATIONS
+========================================
+
+MINIMAL PACKAGE (Students/Quick Share):
+----------------------------------------
+Include:
+  • index.html
+  • styles.css
+  • script.js
+  • USERGUIDE.md
+
+Size: ~35 KB
+Good for: Email, quick testing
+
+
+STANDARD PACKAGE (Recommended):
+--------------------------------
+Include:
+  • index.html
+  • styles.css
+  • script.js
+  • START_HERE.html
+  • USERGUIDE.md
+
+Size: ~42 KB
+Good for: General distribution
+
+
+COMPLETE PACKAGE (Developers/Contributors):
+--------------------------------------------
+Include everything!
+
+Size: ~62 KB
+Good for: Open source, team collaboration
+
+
+========================================
+QUICK PACKAGING
+========================================
+
+WINDOWS:
+--------
+Double-click: package.bat
+Creates: ProTeleprompter.zip
+
+MAC/LINUX:
+----------
+Run in terminal: bash package.sh
+Creates: ProTeleprompter.zip
+
+MANUAL:
+-------
+Select files → Right-click → Compress
+
+
+========================================
+FILE DEPENDENCIES
+========================================
+
+index.html requires:
+  → styles.css (in same folder)
+  → script.js (in same folder)
+  → Internet (first PDF import only)
+
+All other files are independent!
+
+
+========================================
+WHAT EACH USER NEEDS
+========================================
+
+Basic User:
+-----------
+  • index.html
+  • styles.css
+  • script.js
+  • USERGUIDE.md
+
+Power User:
+-----------
+  • Everything above
+  • START_HERE.html
+  • README.md
+
+Developer:
+----------
+  • All files
+  • Can modify and redistribute
+
+
+========================================
+SIZE COMPARISON
+========================================
+
+Your teleprompter:        ~29 KB (core)
+Average PowerPoint:       ~500 KB
+Average video (1 min):    ~10 MB
+Average PDF:              ~200 KB
+
+Your teleprompter is TINY and FAST!
+
+
+========================================
+BROWSER COMPATIBILITY
+========================================
+
+Works on:
+  ✓ Chrome/Edge (All platforms)
+  ✓ Firefox (All platforms)
+  ✓ Safari (Mac/iOS)
+  ✓ Opera
+  ✓ Any modern browser
+
+Does NOT require:
+  ✗ Installation
+  ✗ Admin rights
+  ✗ Internet (after first PDF import)
+  ✗ Server
+  ✗ Database
+
+
+========================================
+SECURITY & PRIVACY
+========================================
+
+✓ No external connections (except PDF.js CDN)
+✓ No data collection
+✓ No tracking
+✓ No ads
+✓ All data stays local
+✓ Open source (readable code)
+
+
+========================================
+QUICK START FOR RECIPIENTS
+========================================
+
+1. Extract ZIP file
+2. Open START_HERE.html (or index.html)
+3. Import or type script
+4. Press Space to start
+5. Done!
+
+
+========================================
+TROUBLESHOOTING
+========================================
+
+If index.html doesn't work:
+  → Make sure styles.css and script.js are in same folder
+  → Try different browser (Chrome recommended)
+  → Check browser console for errors
+
+If PDF import fails:
+  → Requires internet first time only
+  → After that, works offline
+  → Try re-importing or use .txt instead
+
+
+========================================
+UPDATES & VERSIONS
+========================================
+
+Current version: 1.0
+
+To update:
+  1. Replace old files with new files
+  2. Keep same folder structure
+  3. User settings will persist
+
+
+========================================
+SUPPORT & FEEDBACK
+========================================
+
+For detailed help, see:
+  • USERGUIDE.md (end users)
+  • README.md (technical details)
+  • DISTRIBUTION.md (sharing/hosting)
+
+
+========================================
+
+Ready to share? Run package.bat/sh now!
+
+========================================

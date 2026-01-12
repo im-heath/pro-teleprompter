@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professional Teleprompter</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- PDF.js Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Control Panel -->
+        <div class="control-panel" id="controlPanel">
+            <div class="control-header">
+                <h1>Pro Teleprompter</h1>
+                <button class="toggle-controls" id="toggleControls" title="Hide Controls (H)">⚙️</button>
+            </div>
+
+            <!-- Text Input Section -->
+            <div class="control-section">
+                <h3>Script</h3>
+                <textarea id="scriptInput" placeholder="Enter your script here or import a file..."></textarea>
+                <div class="button-group">
+                    <button id="importBtn" title="Import Text File">📄 Import</button>
+                    <button id="exportBtn" title="Export Script">💾 Export</button>
+                    <button id="clearBtn" title="Clear Script">🗑️ Clear</button>
+                </div>
+                <input type="file" id="fileInput" accept=".txt,.md,.pdf" style="display: none;">
+            </div>
+
+            <!-- Speed Control -->
+            <div class="control-section">
+                <h3>Speed Control</h3>
+                <div class="slider-container">
+                    <label for="speedSlider">Speed: <span id="speedValue">3</span></label>
+                    <input type="range" id="speedSlider" min="1" max="10" value="3" step="0.5">
+                </div>
+            </div>
+
+            <!-- Font Size Control -->
+            <div class="control-section">
+                <h3>Font Size</h3>
+                <div class="slider-container">
+                    <label for="fontSlider">Size: <span id="fontValue">48</span>px</label>
+                    <input type="range" id="fontSlider" min="24" max="120" value="48" step="4">
+                </div>
+            </div>
+
+            <!-- Display Options -->
+            <div class="control-section">
+                <h3>Display Options</h3>
+                <div class="option-group">
+                    <label>
+                        <input type="checkbox" id="mirrorToggle">
+                        Mirror Mode (for glass teleprompters)
+                    </label>
+                    <label>
+                        <input type="checkbox" id="highlightToggle" checked>
+                        Highlight Current Section
+                    </label>
+                </div>
+            </div>
+
+            <!-- Color Theme -->
+            <div class="control-section">
+                <h3>Color Theme</h3>
+                <div class="theme-selector">
+                    <button class="theme-btn active" data-theme="dark">🌙 Dark</button>
+                    <button class="theme-btn" data-theme="light">☀️ Light</button>
+                    <button class="theme-btn" data-theme="green">💚 Green</button>
+                    <button class="theme-btn" data-theme="blue">💙 Blue</button>
+                    <button class="theme-btn" data-theme="custom">🎨 Custom</button>
+                </div>
+            </div>
+
+            <!-- Custom Colors -->
+            <div class="control-section" id="customColorsSection" style="display: none;">
+                <h3>Custom Colors</h3>
+                <div class="color-pickers">
+                    <div class="color-picker-item">
+                        <label for="bgColorPicker">Background</label>
+                        <input type="color" id="bgColorPicker" value="#000000">
+                    </div>
+                    <div class="color-picker-item">
+                        <label for="textColorPicker">Text</label>
+                        <input type="color" id="textColorPicker" value="#ffffff">
+                    </div>
+                    <div class="color-picker-item">
+                        <label for="accentColorPicker">Accent</label>
+                        <input type="color" id="accentColorPicker" value="#4CAF50">
+                    </div>
+                </div>
+                <div class="color-presets">
+                    <h4>Quick Presets</h4>
+                    <div class="preset-buttons">
+                        <button class="preset-btn" data-bg="#000000" data-text="#ffffff" data-accent="#4CAF50">Green on Black</button>
+                        <button class="preset-btn" data-bg="#ffffff" data-text="#000000" data-accent="#2196F3">Black on White</button>
+                        <button class="preset-btn" data-bg="#1a1a2e" data-text="#eee" data-accent="#0f3460">Navy</button>
+                        <button class="preset-btn" data-bg="#2d132c" data-text="#ee4540" data-accent="#801336">Red Alert</button>
+                        <button class="preset-btn" data-bg="#0a0e27" data-text="#ffd700" data-accent="#ff6b35">Gold</button>
+                        <button class="preset-btn" data-bg="#f8f9fa" data-text="#212529" data-accent="#6c757d">Gray</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Playback Controls -->
+            <div class="control-section">
+                <h3>Playback</h3>
+                <div class="playback-controls">
+                    <button id="playBtn" class="control-btn primary">▶️ Play</button>
+                    <button id="pauseBtn" class="control-btn">⏸️ Pause</button>
+                    <button id="resetBtn" class="control-btn">⏮️ Reset</button>
+                </div>
+            </div>
+
+            <!-- Keyboard Shortcuts -->
+            <div class="control-section">
+                <h3>Keyboard Shortcuts</h3>
+                <div class="shortcuts-list">
+                    <div><kbd>Space</kbd> Play/Pause</div>
+                    <div><kbd>R</kbd> Reset</div>
+                    <div><kbd>↑</kbd> Increase Speed</div>
+                    <div><kbd>↓</kbd> Decrease Speed</div>
+                    <div><kbd>+</kbd> Larger Font</div>
+                    <div><kbd>-</kbd> Smaller Font</div>
+                    <div><kbd>M</kbd> Mirror Mode</div>
+                    <div><kbd>H</kbd> Hide/Show Controls</div>
+                    <div><kbd>F</kbd> Fullscreen</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Teleprompter Display -->
+        <div class="teleprompter-container" id="teleprompterContainer">
+            <div class="teleprompter-display" id="teleprompterDisplay">
+                <div class="scroll-content" id="scrollContent">
+                    <div class="placeholder">
+                        Enter your script in the control panel to get started
+                    </div>
+                </div>
+            </div>
+            <div class="reading-guide" id="readingGuide"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

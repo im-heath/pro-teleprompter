@@ -1,0 +1,116 @@
+========================================
+PRO TELEPROMPTER - SHARING INSTRUCTIONS
+========================================
+
+HOW TO PACKAGE FOR SHARING
+---------------------------
+
+WINDOWS USERS:
+--------------
+Option 1 (Easy): Double-click "package.bat"
+  • Creates ProTeleprompter.zip automatically
+  • Share the ZIP file with anyone
+
+Option 2 (Manual):
+  1. Select these files:
+     - index.html
+     - styles.css
+     - script.js
+     - USERGUIDE.md
+     - START_HERE.html (optional)
+  2. Right-click → Send to → Compressed (zipped) folder
+  3. Rename to "ProTeleprompter.zip"
+
+
+MAC/LINUX USERS:
+----------------
+Option 1 (Easy): Run in terminal:
+  bash package.sh
+
+Option 2 (Manual):
+  1. Select all required files
+  2. Right-click → Compress
+  3. Rename to "ProTeleprompter.zip"
+
+
+WHAT TO SHARE:
+--------------
+Essential files (must include):
+  ✓ index.html
+  ✓ styles.css
+  ✓ script.js
+  ✓ USERGUIDE.md
+
+Nice to include:
+  ✓ START_HERE.html (friendly welcome page)
+  ✓ README.md (full documentation)
+
+
+SHARING OPTIONS:
+----------------
+1. Email - Attach the ZIP file
+2. Cloud Storage - Upload to Google Drive/Dropbox/OneDrive
+3. USB Drive - Copy the ZIP file
+4. File Transfer - Use WeTransfer, SendAnywhere, etc.
+
+
+INSTRUCTIONS FOR RECIPIENTS:
+-----------------------------
+Tell them to:
+  1. Extract the ZIP file
+  2. Open "START_HERE.html" OR "index.html"
+  3. Follow the quick start guide
+  4. That's it!
+
+
+ONLINE HOSTING (OPTIONAL):
+--------------------------
+To host online for easy access:
+
+GitHub Pages (Free):
+  1. Create GitHub repository
+  2. Upload files
+  3. Enable Pages in settings
+  4. Share URL
+
+Netlify (Free):
+  1. Go to netlify.com
+  2. Drag and drop folder
+  3. Share generated URL
+
+
+TESTING BEFORE SHARING:
+-----------------------
+✓ Open index.html in different browsers
+✓ Test PDF import
+✓ Test all controls
+✓ Verify mobile works
+✓ Check all themes
+
+
+SAMPLE MESSAGE TO SEND:
+-----------------------
+"Hi! I'm sharing a professional teleprompter app.
+
+Just extract the ZIP and open index.html in your browser.
+
+Features:
+• Variable speed scrolling
+• PDF import
+• Mirror mode for glass teleprompters
+• 4 color themes
+• Full keyboard control
+• Works 100% offline
+
+Check USERGUIDE.md for instructions!
+
+Let me know what you think!"
+
+
+SUPPORT:
+--------
+See DISTRIBUTION.md for detailed instructions
+See USERGUIDE.md for end-user help
+
+
+Happy sharing! 🚀
