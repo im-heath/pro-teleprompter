@@ -12,6 +12,10 @@ A feature-rich, web-based teleprompter application designed for content creators
 
 ### Professional Features
 - **Mirror Mode** - Flip text horizontally for use with glass teleprompters
+- **Timeline/Pacing** - Track elapsed time, remaining time, and stay on schedule
+- **Pace Indicator** - Real-time feedback if you're ahead, behind, or on track
+- **Target Duration** - Set your desired presentation length (1-60 minutes)
+- **Visual Progress** - Color-coded progress bar shows pacing status
 - **Custom Colors** - Full RGB color customization for background, text, and accents
 - **Color Presets** - Quick-select professional color combinations
 - **Fullscreen Mode** - Distraction-free reading experience

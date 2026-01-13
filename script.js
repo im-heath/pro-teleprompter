@@ -13,7 +13,12 @@ const state = {
         background: '#000000',
         text: '#ffffff',
         accent: '#4CAF50'
-    }
+    },
+    timelineEnabled: false,
+    targetDuration: 300, // 5 minutes in seconds
+    startTime: null,
+    elapsedTime: 0,
+    timerInterval: null
 };
 
 // DOM Elements
@@ -43,7 +48,16 @@ const elements = {
     accentColorPicker: document.getElementById('accentColorPicker'),
     spellCheckBtn: document.getElementById('spellCheckBtn'),
     autoCorrectBtn: document.getElementById('autoCorrectBtn'),
-    spellCheckResults: document.getElementById('spellCheckResults')
+    spellCheckResults: document.getElementById('spellCheckResults'),
+    timelineToggle: document.getElementById('timelineToggle'),
+    timelineControls: document.getElementById('timelineControls'),
+    targetDuration: document.getElementById('targetDuration'),
+    targetDurationValue: document.getElementById('targetDurationValue'),
+    elapsedTime: document.getElementById('elapsedTime'),
+    remainingTime: document.getElementById('remainingTime'),
+    paceStatus: document.getElementById('paceStatus'),
+    progressBar: document.getElementById('progressBar'),
+    targetMarker: document.getElementById('targetMarker')
 };
 
 // Initialize the application
@@ -122,6 +136,10 @@ function setupEventListeners() {
     elements.spellCheckBtn.addEventListener('click', runSpellCheck);
     elements.autoCorrectBtn.addEventListener('click', runAutoCorrect);
 
+    // Timeline controls
+    elements.timelineToggle.addEventListener('change', handleTimelineToggle);
+    elements.targetDuration.addEventListener('input', handleTargetDurationChange);
+
     // Keyboard shortcuts
     document.addEventListener('keydown', handleKeyPress);
 
@@ -171,6 +189,12 @@ function play() {
     elements.playBtn.style.opacity = '0.5';
     elements.pauseBtn.style.opacity = '1';
 
+    // Start timeline if enabled
+    if (state.timelineEnabled && !state.startTime) {
+        state.startTime = Date.now() - (state.elapsedTime * 1000);
+        startTimer();
+    }
+
     function scroll() {
         if (!state.isPlaying) return;
 
@@ -205,6 +229,14 @@ function reset() {
     pause();
     state.currentPosition = 0;
     elements.scrollContent.style.transform = 'translateY(0)';
+
+    // Reset timeline
+    if (state.timelineEnabled) {
+        state.startTime = null;
+        state.elapsedTime = 0;
+        stopTimer();
+        updateTimeline();
+    }
 }
 
 function togglePlayPause() {
@@ -548,7 +580,9 @@ function saveToLocalStorage() {
         isMirrored: state.isMirrored,
         isHighlightEnabled: state.isHighlightEnabled,
         currentTheme: state.currentTheme,
-        customColors: state.customColors
+        customColors: state.customColors,
+        timelineEnabled: state.timelineEnabled,
+        targetDuration: state.targetDuration
     };
     localStorage.setItem('teleprompterData', JSON.stringify(data));
 }
@@ -591,6 +625,18 @@ function loadFromLocalStorage() {
                 if (data.currentTheme === 'custom') {
                     applyCustomColors();
                 }
+            }
+            if (data.timelineEnabled !== undefined) {
+                state.timelineEnabled = data.timelineEnabled;
+                elements.timelineToggle.checked = data.timelineEnabled;
+                if (data.timelineEnabled) {
+                    elements.timelineControls.style.display = 'block';
+                }
+            }
+            if (data.targetDuration) {
+                state.targetDuration = data.targetDuration;
+                elements.targetDuration.value = data.targetDuration;
+                elements.targetDurationValue.textContent = formatTime(data.targetDuration);
             }
 
             // Apply font size
@@ -759,6 +805,97 @@ function runAutoCorrect() {
             elements.spellCheckResults.style.display = 'none';
         }, 3000);
     }
+}
+
+// Timeline Functions
+function handleTimelineToggle(e) {
+    state.timelineEnabled = e.target.checked;
+
+    if (state.timelineEnabled) {
+        elements.timelineControls.style.display = 'block';
+        updateTimeline();
+    } else {
+        elements.timelineControls.style.display = 'none';
+        stopTimer();
+        state.startTime = null;
+        state.elapsedTime = 0;
+    }
+
+    saveToLocalStorage();
+}
+
+function handleTargetDurationChange(e) {
+    state.targetDuration = parseInt(e.target.value);
+    elements.targetDurationValue.textContent = formatTime(state.targetDuration);
+    updateTimeline();
+    saveToLocalStorage();
+}
+
+function startTimer() {
+    if (state.timerInterval) return;
+
+    state.timerInterval = setInterval(() => {
+        if (state.isPlaying && state.timelineEnabled) {
+            state.elapsedTime = Math.floor((Date.now() - state.startTime) / 1000);
+            updateTimeline();
+        }
+    }, 100); // Update every 100ms for smooth display
+}
+
+function stopTimer() {
+    if (state.timerInterval) {
+        clearInterval(state.timerInterval);
+        state.timerInterval = null;
+    }
+}
+
+function updateTimeline() {
+    if (!state.timelineEnabled) return;
+
+    const elapsed = state.elapsedTime;
+    const target = state.targetDuration;
+    const remaining = Math.max(0, target - elapsed);
+
+    // Update time displays
+    elements.elapsedTime.textContent = formatTime(elapsed);
+    elements.remainingTime.textContent = formatTime(remaining);
+
+    // Calculate progress
+    const actualProgress = (elapsed / target) * 100;
+    const scrollProgress = (state.currentPosition / (elements.scrollContent.scrollHeight - elements.teleprompterContainer.clientHeight)) * 100;
+
+    // Update progress bar
+    elements.progressBar.style.width = `${Math.min(actualProgress, 100)}%`;
+
+    // Update pace status
+    const timeDiff = actualProgress - scrollProgress;
+    let paceClass = 'on-track';
+    let paceText = 'On Track';
+
+    if (Math.abs(timeDiff) < 5) {
+        paceClass = 'on-track';
+        paceText = 'On Track';
+    } else if (timeDiff > 5) {
+        paceClass = 'behind';
+        paceText = 'Behind Schedule';
+    } else {
+        paceClass = 'ahead';
+        paceText = 'Ahead of Schedule';
+    }
+
+    elements.paceStatus.className = `pace-status ${paceClass}`;
+    elements.paceStatus.textContent = paceText;
+
+    elements.progressBar.className = `progress-bar ${paceClass}`;
+
+    // Update target marker
+    elements.targetMarker.style.left = `${scrollProgress}%`;
+}
+
+function formatTime(seconds) {
+    const mins = Math.floor(seconds / 60);
+    const secs = seconds % 60;
+    return `${mins}:${secs.toString().padStart(2, '0')}`;
 }
 
 // Initialize when DOM is ready

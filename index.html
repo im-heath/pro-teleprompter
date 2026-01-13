@@ -109,6 +109,43 @@
                 </div>
             </div>
 
+            <!-- Timeline Control -->
+            <div class="control-section">
+                <h3>Timeline / Pacing</h3>
+                <div class="option-group">
+                    <label>
+                        <input type="checkbox" id="timelineToggle">
+                        Enable Timeline Tracking
+                    </label>
+                </div>
+                <div id="timelineControls" class="timeline-controls" style="display: none;">
+                    <div class="slider-container">
+                        <label for="targetDuration">Target Duration: <span id="targetDurationValue">5:00</span></label>
+                        <input type="range" id="targetDuration" min="60" max="3600" value="300" step="30">
+                    </div>
+                    <div class="timeline-display">
+                        <div class="time-info">
+                            <div class="time-item">
+                                <span class="time-label">Elapsed:</span>
+                                <span class="time-value" id="elapsedTime">0:00</span>
+                            </div>
+                            <div class="time-item">
+                                <span class="time-label">Remaining:</span>
+                                <span class="time-value" id="remainingTime">5:00</span>
+                            </div>
+                        </div>
+                        <div class="pace-indicator">
+                            <div class="pace-label">Pace:</div>
+                            <div class="pace-status" id="paceStatus">On Track</div>
+                        </div>
+                        <div class="progress-bar-container">
+                            <div class="progress-bar" id="progressBar"></div>
+                            <div class="target-marker" id="targetMarker"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <!-- Playback Controls -->
             <div class="control-section">
                 <h3>Playback</h3>

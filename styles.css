@@ -364,6 +364,117 @@ input[type="color"]:hover {
     box-shadow: 0 4px 12px rgba(0,0,0,0.2);
 }
 
+/* Timeline Controls */
+.timeline-controls {
+    margin-top: 12px;
+}
+
+.timeline-display {
+    background: var(--bg-primary);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 12px;
+    margin-top: 12px;
+}
+
+.time-info {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 12px;
+}
+
+.time-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.time-label {
+    font-size: 11px;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 4px;
+}
+
+.time-value {
+    font-size: 20px;
+    font-weight: bold;
+    color: var(--accent-color);
+    font-family: monospace;
+}
+
+.pace-indicator {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+    padding: 8px;
+    background: var(--bg-secondary);
+    border-radius: 5px;
+}
+
+.pace-label {
+    font-size: 13px;
+    color: var(--text-secondary);
+    font-weight: bold;
+}
+
+.pace-status {
+    font-size: 14px;
+    font-weight: bold;
+    padding: 4px 12px;
+    border-radius: 12px;
+}
+
+.pace-status.on-track {
+    background: rgba(76, 175, 80, 0.2);
+    color: #4CAF50;
+}
+
+.pace-status.ahead {
+    background: rgba(33, 150, 243, 0.2);
+    color: #2196F3;
+}
+
+.pace-status.behind {
+    background: rgba(255, 107, 107, 0.2);
+    color: #ff6b6b;
+}
+
+.progress-bar-container {
+    position: relative;
+    height: 8px;
+    background: var(--bg-secondary);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.progress-bar {
+    height: 100%;
+    background: var(--accent-color);
+    border-radius: 4px;
+    transition: width 0.3s ease;
+    position: relative;
+}
+
+.progress-bar.ahead {
+    background: #2196F3;
+}
+
+.progress-bar.behind {
+    background: #ff6b6b;
+}
+
+.target-marker {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 2px;
+    background: rgba(255, 255, 255, 0.5);
+    pointer-events: none;
+}
+
 /* Playback Controls */
 .playback-controls {
     display: flex;
