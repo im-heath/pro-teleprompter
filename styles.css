@@ -142,6 +142,69 @@ button:hover {
     background: #45a049;
 }
 
+/* Spell Check Results */
+.spell-check-results {
+    margin-top: 12px;
+    padding: 12px;
+    background: var(--bg-primary);
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.spell-check-summary {
+    font-size: 13px;
+    color: var(--text-secondary);
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+.spell-check-summary.success {
+    color: var(--accent-color);
+}
+
+.spell-check-summary.errors {
+    color: #ff6b6b;
+}
+
+.spell-error {
+    font-size: 12px;
+    padding: 6px;
+    margin: 4px 0;
+    background: rgba(255, 107, 107, 0.1);
+    border-left: 3px solid #ff6b6b;
+    border-radius: 3px;
+}
+
+.spell-error-word {
+    font-weight: bold;
+    color: #ff6b6b;
+    font-family: monospace;
+}
+
+.spell-suggestions {
+    margin-top: 4px;
+    font-size: 11px;
+    color: var(--text-secondary);
+}
+
+.spell-suggestion-item {
+    display: inline-block;
+    padding: 2px 6px;
+    margin: 2px;
+    background: var(--accent-color);
+    color: white;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: transform 0.1s;
+}
+
+.spell-suggestion-item:hover {
+    transform: scale(1.05);
+    opacity: 0.9;
+}
+
 /* Sliders */
 .slider-container {
     display: flex;

@@ -20,13 +20,18 @@
             <!-- Text Input Section -->
             <div class="control-section">
                 <h3>Script</h3>
-                <textarea id="scriptInput" placeholder="Enter your script here or import a file..."></textarea>
+                <textarea id="scriptInput" placeholder="Enter your script here or import a file..." spellcheck="true"></textarea>
                 <div class="button-group">
                     <button id="importBtn" title="Import Text File">📄 Import</button>
                     <button id="exportBtn" title="Export Script">💾 Export</button>
                     <button id="clearBtn" title="Clear Script">🗑️ Clear</button>
                 </div>
+                <div class="button-group" style="margin-top: 8px;">
+                    <button id="spellCheckBtn" title="Check Spelling">✓ Spell Check</button>
+                    <button id="autoCorrectBtn" title="Auto-correct Common Errors">🔧 Auto-fix</button>
+                </div>
                 <input type="file" id="fileInput" accept=".txt,.md,.pdf" style="display: none;">
+                <div id="spellCheckResults" class="spell-check-results" style="display: none;"></div>
             </div>
 
             <!-- Speed Control -->

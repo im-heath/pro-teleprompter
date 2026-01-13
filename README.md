@@ -22,6 +22,8 @@ A feature-rich, web-based teleprompter application designed for content creators
 - **Import Scripts** - Load .txt, .md, or .pdf files (PDF requires internet on first use)
 - **Export Scripts** - Save your scripts for backup or sharing
 - **Auto-Save** - Scripts are automatically saved to browser storage
+- **Spell Check** - Built-in spell checker catches common misspellings
+- **Auto-Correct** - One-click fix for common spelling errors
 - **Offline Capable** - Works completely offline after initial page load
 
 ### Control Methods

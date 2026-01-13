@@ -40,7 +40,10 @@ const elements = {
     customColorsSection: document.getElementById('customColorsSection'),
     bgColorPicker: document.getElementById('bgColorPicker'),
     textColorPicker: document.getElementById('textColorPicker'),
-    accentColorPicker: document.getElementById('accentColorPicker')
+    accentColorPicker: document.getElementById('accentColorPicker'),
+    spellCheckBtn: document.getElementById('spellCheckBtn'),
+    autoCorrectBtn: document.getElementById('autoCorrectBtn'),
+    spellCheckResults: document.getElementById('spellCheckResults')
 };
 
 // Initialize the application
@@ -114,6 +117,10 @@ function setupEventListeners() {
             applyColorPreset(bg, text, accent);
         });
     });
+
+    // Spell check buttons
+    elements.spellCheckBtn.addEventListener('click', runSpellCheck);
+    elements.autoCorrectBtn.addEventListener('click', runAutoCorrect);
 
     // Keyboard shortcuts
     document.addEventListener('keydown', handleKeyPress);
@@ -597,6 +604,161 @@ function loadFromLocalStorage() {
 // Update Display
 function updateDisplay() {
     elements.scrollContent.style.fontSize = `${state.fontSize}px`;
+}
+
+// Spell Check Functions
+const commonMisspellings = {
+    'teh': 'the',
+    'adn': 'and',
+    'taht': 'that',
+    'thier': 'their',
+    'recieve': 'receive',
+    'occured': 'occurred',
+    'seperate': 'separate',
+    'definately': 'definitely',
+    'untill': 'until',
+    'wich': 'which',
+    'wiht': 'with',
+    'thsi': 'this',
+    'waht': 'what',
+    'dont': "don't",
+    'cant': "can't",
+    'wont': "won't",
+    'shouldnt': "shouldn't",
+    'wouldnt': "wouldn't",
+    'couldnt': "couldn't",
+    'isnt': "isn't",
+    'wasnt': "wasn't",
+    'werent': "weren't",
+    'hasnt': "hasn't",
+    'havent': "haven't",
+    'hadnt': "hadn't",
+    'didnt': "didn't",
+    'doesnt': "doesn't"
+};
+
+function runSpellCheck() {
+    const text = elements.scriptInput.value;
+
+    if (!text.trim()) {
+        elements.spellCheckResults.style.display = 'none';
+        return;
+    }
+
+    // Use browser's built-in spell checker if available
+    const errors = [];
+    const words = text.split(/\s+/);
+
+    words.forEach((word, index) => {
+        const cleanWord = word.replace(/[.,!?;:'"()]/g, '').toLowerCase();
+
+        if (commonMisspellings[cleanWord]) {
+            errors.push({
+                original: word,
+                suggestion: commonMisspellings[cleanWord],
+                position: index
+            });
+        }
+    });
+
+    displaySpellCheckResults(errors);
+}
+
+function displaySpellCheckResults(errors) {
+    if (errors.length === 0) {
+        elements.spellCheckResults.innerHTML = `
+            <div class="spell-check-summary success">
+                ✓ No common spelling errors found!
+            </div>
+        `;
+        elements.spellCheckResults.style.display = 'block';
+        setTimeout(() => {
+            elements.spellCheckResults.style.display = 'none';
+        }, 3000);
+        return;
+    }
+
+    let html = `
+        <div class="spell-check-summary errors">
+            Found ${errors.length} potential error${errors.length > 1 ? 's' : ''}
+        </div>
+    `;
+
+    errors.forEach(error => {
+        html += `
+            <div class="spell-error">
+                <span class="spell-error-word">"${error.original}"</span> might be misspelled
+                <div class="spell-suggestions">
+                    Suggestion: <span class="spell-suggestion-item" onclick="replaceWord('${error.original}', '${error.suggestion}')">${error.suggestion}</span>
+                </div>
+            </div>
+        `;
+    });
+
+    elements.spellCheckResults.innerHTML = html;
+    elements.spellCheckResults.style.display = 'block';
+}
+
+function replaceWord(original, replacement) {
+    const text = elements.scriptInput.value;
+    // Use word boundaries to replace whole words only
+    const regex = new RegExp(`\\b${original}\\b`, 'gi');
+    elements.scriptInput.value = text.replace(regex, replacement);
+
+    // Trigger input event to update display
+    handleScriptInput({ target: elements.scriptInput });
+    saveToLocalStorage();
+
+    // Re-run spell check to update results
+    runSpellCheck();
+}
+
+function runAutoCorrect() {
+    const text = elements.scriptInput.value;
+
+    if (!text.trim()) {
+        return;
+    }
+
+    let correctedText = text;
+    let correctionCount = 0;
+
+    // Auto-correct common misspellings
+    Object.keys(commonMisspellings).forEach(wrong => {
+        const right = commonMisspellings[wrong];
+        const regex = new RegExp(`\\b${wrong}\\b`, 'gi');
+        const matches = correctedText.match(regex);
+        if (matches) {
+            correctionCount += matches.length;
+            correctedText = correctedText.replace(regex, right);
+        }
+    });
+
+    if (correctionCount > 0) {
+        elements.scriptInput.value = correctedText;
+        handleScriptInput({ target: elements.scriptInput });
+        saveToLocalStorage();
+
+        elements.spellCheckResults.innerHTML = `
+            <div class="spell-check-summary success">
+                ✓ Auto-corrected ${correctionCount} error${correctionCount > 1 ? 's' : ''}!
+            </div>
+        `;
+        elements.spellCheckResults.style.display = 'block';
+        setTimeout(() => {
+            elements.spellCheckResults.style.display = 'none';
+        }, 3000);
+    } else {
+        elements.spellCheckResults.innerHTML = `
+            <div class="spell-check-summary success">
+                ✓ No common errors to auto-correct!
+            </div>
+        `;
+        elements.spellCheckResults.style.display = 'block';
+        setTimeout(() => {
+            elements.spellCheckResults.style.display = 'none';
+        }, 3000);
+    }
 }
 
 // Initialize when DOM is ready
